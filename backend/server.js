@@ -6,7 +6,7 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
-import orderRoutes from "./routes/orderRoutes";
+import orderRoutes from "./routes/orderRoutes.js";
 //instantiate
 dotenv.config();
 connectDB();
@@ -25,7 +25,7 @@ app.use(express.json());
 //mount route to server
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
-app.user("/api/orders", orderRoutes);
+app.use("/api/orders", orderRoutes);
 
 //error middlwares
 //for 404 error
