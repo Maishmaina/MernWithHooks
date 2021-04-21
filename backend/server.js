@@ -15,23 +15,22 @@ const app = express();
 //body parse to access req.body for post request
 app.use(express.json());
 
-//example of middleware
-
-// app.use((req, res, next) => {
-//   console.log(req.originalUrl);
-//   next();
-// });
-
 //mount route to server
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
+
+//get PAYPAL CLIENT ID
+app.get("/api/config/paypal", (req, res) =>
+  res.send(process.env.PAYPAL_CLIENT_ID)
+);
 
 //error middlwares
 //for 404 error
 app.use(notFound);
 //500 error
 app.use(errorHandler);
+//specify port
 const PORT = process.env.PORT || 5000;
 app.listen(
   PORT,

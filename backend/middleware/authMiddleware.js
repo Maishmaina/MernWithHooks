@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
-
+//Method protect unauthorized access to protected route
 const protect = asyncHandler(async (req, res, next) => {
   let token;
   if (
@@ -26,4 +26,14 @@ const protect = asyncHandler(async (req, res, next) => {
     throw new Error("Not authorized, no token");
   }
 });
-export { protect };
+
+//Method for admin right and privileges
+const admin = (req, res, next) => {
+  if (req.user && req.user.isAdmin) {
+    next();
+  } else {
+    res.status(401);
+    throw new Error("Not Authorized Method keeps Failing");
+  }
+};
+export { protect, admin };
