@@ -12,7 +12,9 @@ const Product = ({ product }) => {
       <Card.Body>
         <Link to={`/product/${product._id}`}>
           <Card.Title as="div">
-            <strong>{product.name.slice(0, 22) + "..."}</strong>
+            <strong className="text-success">
+              {product.name.slice(0, 22) + "..."}
+            </strong>
           </Card.Title>
         </Link>
         <Card.Text as="div">
